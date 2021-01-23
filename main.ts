@@ -25,6 +25,9 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         `, spacePlane, 0, -100)
 })
+scene.onHitWall(SpriteKind.Enemy, function (sprite, location) {
+    sprite.destroy()
+})
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (dart, bogey) {
     bogey.destroy()
     dart.destroy(effects.fire, 100)
@@ -33,6 +36,7 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (dart, bogey
 let wave_countdown = 0
 let dart: Sprite = null
 let spacePlane: Sprite = null
+tiles.setTilemap(tilemap`level1`)
 let x = 1
 spacePlane = sprites.create(img`
     . . . . . . . c d . . . . . . . 
